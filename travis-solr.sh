@@ -100,6 +100,12 @@ download_and_run() {
         fi
     done
 
+    if [ ! -z "$SOLR_CONF_DIR" ]
+    then
+        rsync -Ppthrqz $SOLR_CONF_DIR/ $dir_name/example/solr/$dir_conf/
+        echo "Copied solr conf directory from $SOLR_CONF_DIR."
+    fi
+
     # Run solr
     run $dir_name $SOLR_PORT
 
